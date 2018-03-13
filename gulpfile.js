@@ -1,11 +1,14 @@
+
 var gulp          = require('gulp'),
 		gutil         = require('gulp-util' ),
 		sass          = require('gulp-sass'),
 		browsersync   = require('browser-sync'),
 		concat        = require('gulp-concat'),
 		imagemin      = require('gulp-imagemin'),
+		cache         = require('gulp-cache'),
 		uglify        = require('gulp-uglify'),
 		cleancss      = require('gulp-clean-css'),
+		del           = require('del'),
 		rename        = require('gulp-rename'),
 		autoprefixer  = require('gulp-autoprefixer'),
 		notify        = require("gulp-notify"),
@@ -28,7 +31,7 @@ gulp.task('sass', function() {
 	.pipe(sass({ outputStyle: 'expand' }).on("error", notify.onError()))
 	.pipe(rename({ suffix: '.min', prefix : '' }))
 	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
+	// .pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
 	.pipe(gulp.dest('app/css'))
 	.pipe(browsersync.reload( {stream: true} ))
 });
@@ -64,7 +67,8 @@ gulp.task('imagemin', function() {
 	.pipe(cache(imagemin())) // Cache Images
 	.pipe(gulp.dest('dist/img')); 
 });
-gulp.task('build', ['sass', 'js'], function() {
+
+gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
@@ -84,11 +88,14 @@ gulp.task('build', ['sass', 'js'], function() {
 		]).pipe(gulp.dest('dist/fonts'));
 
 });
+
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
 	gulp.watch('app/*.html', browsersync.reload)
 });
-// gulp.task('clearcache', function () { return cache.clearAll(); });
+
+gulp.task('removedist', function() { return del.sync('dist'); });
+gulp.task('clearcache', function () { return cache.clearAll(); });
 
 gulp.task('default', ['watch']);

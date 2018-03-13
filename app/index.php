@@ -4,7 +4,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<!-- <base href="/"> -->
+<!--	<base href="/">-->
 
 	<title>OptimizedHTML 4</title>
 	<meta name="description" content="">
@@ -21,6 +21,7 @@
 	<!-- Custom Browsers Color Start -->
 	<meta name="theme-color" content="#000">
 	<!-- Custom Browsers Color End -->
+	<script src="js/scripts.min.js"></script>
 	<link rel="stylesheet" href="css/main.min.css">
 
 </head>
@@ -52,66 +53,27 @@
 						 <div class="swiper-container">
 						 <div class="swiper-wrapper">
 							<!-- Slides -->
-							<div class="swiper-slide" style="background: url(img/slider/slide1.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										Bon Jovi
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide" style="background: url(img/slider/slide2.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										Lady Gaga
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide" style="background: url(img/slider/slide1.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										The Killers
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide" style="background: url(img/slider/slide2.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										The Killers
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide" style="background: url(img/slider/slide2.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										The Killers
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide" style="background: url(img/slider/slide2.png) no-repeat;">
-								<div class="main__slider-block">
-									<div class="main__slider-artist">
-										The Killers
-									</div>
-									<div class="main__slider-info">
-										New Single + Pre–Oder Album
-									</div>
-								</div>
-							</div>
+							<?php 
+							include ('array.txt');
+							$i=1;
+							foreach ($music as $v1) {
+								echo '<div class="swiper-slide" style="background: url(img/slider/slide'.$i.'.png) no-repeat;"><div class="main__slider-block">';
+								$j=0;
+								foreach ($v1 as $v2) {
+									 if($j==0)
+									 {
+										echo '<div class="main__slider-artist">';
+									 }
+									else{
+										echo '<div class="main__slider-info">';
+									}
+										echo $v2.'</div>';
+										$j++;
+								}
+								$i++;
+								echo '</div></div>';
+							}
+							?>
 						</div>					 
 						<!-- If we need navigation buttons -->
 						<div class="swiper-button-prev"></div>
@@ -123,9 +85,9 @@
 
 	</div>
 </div>
-<script src="js/scripts.min.js"></script>
 <script>
 	var mySwiper = new Swiper ('.swiper-container', {
+	  // Optional parameters
      navigation: {
         nextEl:'.swiper-button-next',
         prevEl:'.swiper-button-prev',
@@ -133,18 +95,22 @@
 	  slidesPerView: 3,
       spaceBetween: 30,
     breakpoints: {
+    // when window width is <= 320px
     320: {
       slidesPerView: 1,
       spaceBetween: 10
     },
+    // when window width is <= 480px
     480: {
       slidesPerView: 1,
       spaceBetween: 10
     },
+    // when window width is <= 640px
     770: {
       slidesPerView: 1,
       spaceBetween: 10
     },
+    // when window width is <= 640px
     993: {
       slidesPerView: 2,
       spaceBetween: 10
