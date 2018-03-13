@@ -1,3 +1,7 @@
+<?php
+error_reporting(-1);
+header('Content-Type: text/html; charset=utf-8');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -54,7 +58,7 @@
 						 <div class="swiper-wrapper">
 							<!-- Slides -->
 							<?php 
-							include ('array.txt');
+							include ('array.php');
 							$i=1;
 							foreach ($music as $v1) {
 								echo '<div class="swiper-slide" style="background: url(img/slider/slide'.$i.'.png) no-repeat;"><div class="main__slider-block">';

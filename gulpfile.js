@@ -68,26 +68,26 @@ gulp.task('imagemin', function() {
 	.pipe(gulp.dest('dist/img')); 
 });
 
-gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
+// gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 
-	var buildFiles = gulp.src([
-		'app/*.php',
-		'app/.htaccess',
-		]).pipe(gulp.dest('dist'));
+// 	var buildFiles = gulp.src([
+// 		'app/*.php',
+// 		'app/.htaccess',
+// 		]).pipe(gulp.dest('dist'));
 
-	var buildCss = gulp.src([
-		'app/css/main.min.css',
-		]).pipe(gulp.dest('dist/css'));
+// 	var buildCss = gulp.src([
+// 		'app/css/main.min.css',
+// 		]).pipe(gulp.dest('dist/css'));
 
-	var buildJs = gulp.src([
-		'app/js/scripts.min.js',
-		]).pipe(gulp.dest('dist/js'));
+// 	var buildJs = gulp.src([
+// 		'app/js/scripts.min.js',
+// 		]).pipe(gulp.dest('dist/js'));
 
-	var buildFonts = gulp.src([
-		'app/fonts/**/*',
-		]).pipe(gulp.dest('dist/fonts'));
+// 	var buildFonts = gulp.src([
+// 		'app/fonts/**/*',
+// 		]).pipe(gulp.dest('dist/fonts'));
 
-});
+// });
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
