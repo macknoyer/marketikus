@@ -1,0 +1,49 @@
+@import "vars"
+
+
+/*==========  Desktop First  ==========*/
+
+
+//Extra large: ≥1200px
++media-breakpoint-down(xl)
+
+//Large: ≥992px
++media-breakpoint-down(lg)
+
+//Medium: ≥768px
++media-breakpoint-down(md)
+	
+//Small: ≥576px
++media-breakpoint-down(sm)
+	body
+		background: none
+	.main__left
+		padding: $gutter*2 0
+		text-align: center
+	.main__left-txt
+		font-size: 40px
+		br
+			display: none
+	.align-items-center
+		align-items: normal !important
+	.main__slider .swiper-container
+		width: 100%
+	.main__slider .swiper-wrapper 
+		margin-left: -30px
+//Extra small: >0
++media-breakpoint-down(xs)
+
+
+/*==========  Mobile First  ==========*/
+
+//Extra small: <576px
++media-breakpoint-up(xs)
+
+//Small: ≤576px
++media-breakpoint-up(sm)
+//Medium: ≤768px
++media-breakpoint-up(md) 
+//Large: ≤992px
++media-breakpoint-up(lg)
+//Extra large: ≤1200px
++media-breakpoint-up(xl)
